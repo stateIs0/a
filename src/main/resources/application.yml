@@ -1,0 +1,52 @@
+server:
+  port: 15050
+
+spring:
+  profiles:
+    active: default
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://120.55.186.105:3306/light_formula?characterEncoding=UTF-8&autoReconnect=true&useSSL=false
+    username: root
+    password: Z86G8vc4
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+logging:
+  config: classpath:logback-spring.xml
+  path: log
+
+eva:
+  token:
+    header: X-Auth-Token
+    secret: cgt@epz.com
+    expiration: 604800
+  third-platform:
+    url: http://test.shixing.me:8989/
+
+swagger:
+  title: 光配方
+  description: 光配方
+  version: 0.0.1
+
+shiyuan:
+  account: '001159'
+  password: 5ryj4Q8b
+  extno: 159
+  text: 您的验证码是%s。如非本人操作，请忽略本短信
+---
+spring:
+  profiles: test
+
+---
+spring:
+  profiles: prod

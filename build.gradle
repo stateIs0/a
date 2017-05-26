@@ -1,0 +1,76 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.2.RELEASE'
+	}
+	repositories {
+		maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+		classpath("gradle.plugin.com.boxfuse.client:flyway-release:4.0.3")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'org.flywaydb.flyway'
+
+jar {
+	baseName = 'light'
+	version = '0.0.1-SNAPSHOT'
+}
+
+repositories {
+	maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+}
+
+dependencies {
+	compile 'org.springframework.boot:spring-boot-starter'
+	compile 'org.springframework.boot:spring-boot-starter-actuator'
+	compile 'org.springframework.boot:spring-boot-starter-aop'
+	compile 'org.springframework.boot:spring-boot-starter-jdbc'
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	// Jackson Java 8 Time支持
+	compile 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+	// Simple XML
+	compile 'org.simpleframework:simple-xml:2.7.1'
+	// java jwt
+	compile 'io.jsonwebtoken:jjwt:0.7.0'
+	// Google Guava
+	compile 'com.google.guava:guava:21.0'
+	// MySQL connector
+	compile 'mysql:mysql-connector-java'
+	// druid
+	compile 'com.alibaba:druid:1.0.28'
+	// Mybatis
+	compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.1.1'
+	// mybatis Java 8 Time支持
+	compile 'org.mybatis:mybatis-typehandlers-jsr310:1.0.2'
+	// Mybatis Mapper
+	compile 'tk.mybatis:mapper-spring-boot-starter:1.0.0'
+	// Mybatis PageHelper
+	compile 'com.github.pagehelper:pagehelper-spring-boot-starter:1.1.0'
+	// Swagger API Doc
+	compile 'io.springfox:springfox-swagger2:2.6.1'
+	compile 'io.springfox:springfox-swagger-ui:2.6.1'
+	// Retrofit
+	compile 'com.squareup.retrofit2:retrofit:2.2.0'
+	compile 'com.squareup.retrofit2:converter-jackson:2.2.0'
+	compile 'com.squareup.retrofit2:converter-scalars:2.2.0'
+	// OKHttp
+	compile 'com.squareup.okhttp3:okhttp:3.6.0'
+	compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+	// 七牛SDK
+	compile 'com.qiniu:qiniu-java-sdk:7.2.+'
+	// mqtt https://github.com/fusesource/mqtt-client
+	compile 'org.fusesource.mqtt-client:mqtt-client:1.12'
+
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+flyway {
+	url = 'jdbc:mysql://120.55.186.105:3306/qdyq'
+	user = 'root'
+	password = 'Z86G8vc4'
+	schemas = ['qdyq']
+}
